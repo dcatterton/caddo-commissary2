@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.9.2/forge-core.css" />
+    <link rel="stylesheet"
+        href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.9.2/theme/forge-theme.css" />
+    <link rel="stylesheet"
+        href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.9.2/typography/forge-typography.css" />
+    <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.9.2/forge.css" />
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.9.2/index.js"></script>
+    <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+    <link rel="stylesheet" href="../../../shared.css" />
+    <script src="quantity-field.js"></script>
+    <script src="products.js"></script>
+    <script src="order-history.js"></script>
+</head>
+
+<body>
+    <forge-scaffold viewport>
+        <div slot="header">
+            <forge-app-bar title-text="Caddo Parish, LA – Commissary Ordering" class="app-bar">
+                <forge-icon slot="logo" name="tyler_talking_t_logo" external></forge-icon>
+            </forge-app-bar>
+
+        </div>
+        <div slot="body-header">
+            <forge-card style="--forge-card-padding:0.5rem 1.5rem 0.5rem 0rem; --forge-card-shape: 0;">
+                <div class="header-card">
+                    <div class="header-card-left">
+                        <forge-icon-button aria-label="Go back">
+                            <forge-icon name="arrow_back" external></forge-icon>
+                        </forge-icon-button>
+                        <h2 class="forge-typography--heading3" style="margin: 0; padding: 0;">Order history</h2>
+                    </div>
+                    <div class="header-card-right">
+                        <div class="balance-section">
+                            <p class="forge-typography--label2">Remaining balance: <span
+                                    class="balance-amount">$21.72</span></p>
+                            <forge-meter id="meter" max="100" density="small" theme="success"></forge-meter>
+                        </div>
+                    </div>
+                </div>
+
+            </forge-card>
+        </div>
+        <div slot="body">
+            <div class="body-container">
+                <forge-button-toggle-group aria-label="Filter orders" theme="success" stretch style="background: #fff; margin-bottom: 2rem;">
+                    <forge-button-toggle value="all-orders" selected>Previous orders</forge-button-toggle>
+                    <forge-button-toggle value="completed">Favorite items</forge-button-toggle>
+                </forge-button-toggle-group>
+
+                <forge-card class="order-history-container">
+                    <div class="order-history-header">
+                        <div class="order-history-header-item">
+                            <span class="forge-typography--overline">DATE</span>
+                        </div>
+                        <div class="order-history-header-item">
+                            <span class="forge-typography--overline">ITEMS</span>
+                        </div>
+                        <div class="order-history-header-item">
+                            <span class="forge-typography--overline">ORDER TOTAL</span>
+                        </div>
+                        <div class="order-history-header-item">
+                            <span class="forge-typography--overline">STATUS</span>
+                        </div>
+                        <div class="order-history-header-item">
+                            <span class="forge-typography--overline">ACTIONS</span>
+                        </div>
+                    </div>
+
+                    <div class="order-history-row">
+                        <div class="order-history-cell">
+                            <span class="forge-typography--body2">Aug 17, 2025</span>
+                        </div>
+                        <div class="order-history-cell">
+                            <span class="forge-typography--body2">12</span>
+                        </div>
+                        <div class="order-history-cell">
+                            <span class="forge-typography--body2">$46.80</span>
+                        </div>
+                        <div class="order-history-cell">
+                            <forge-badge theme="warning">Processing</forge-badge>
+                        </div>
+                        <div class="order-history-cell">
+                            <div class="order-actions">
+                                <forge-button variant="outlined" theme="success" density="compact">
+                                    <forge-icon slot="start" name="receipt" external></forge-icon>
+                                    Details
+                                </forge-button>
+                                <forge-button variant="outlined" theme="success" density="compact" onclick="openReorderDrawer('Aug 17, 2025', 12, 54.23)">
+                                    <forge-icon slot="start" name="refresh" external></forge-icon>
+                                    Reorder
+                                </forge-button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-history-row">
+                        <div class="order-history-cell">
+                            <span class="forge-typography--body2">Aug 8, 2025</span>
+                        </div>
+                        <div class="order-history-cell">
+                            <span class="forge-typography--body2">9</span>
+                        </div>
+                        <div class="order-history-cell">
+                            <span class="forge-typography--body2">$26.70</span>
+                        </div>
+                        <div class="order-history-cell">
+                            <forge-badge theme="error">Cancelled</forge-badge>
+                        </div>
+                        <div class="order-history-cell">
+                            <div class="order-actions">
+                                <forge-button variant="outlined" theme="success" density="compact">
+                                    <forge-icon slot="start" name="receipt" external></forge-icon>
+                                    Details
+                                </forge-button>
+                                <forge-button variant="outlined" theme="success" density="compact" onclick="openReorderDrawer('Aug 8, 2025', 9, 24.91)">
+                                    <forge-icon slot="start" name="refresh" external></forge-icon>
+                                    Reorder
+                                </forge-button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-history-row">
+                        <div class="order-history-cell">
+                            <span class="forge-typography--body2">Jul 28, 2025</span>
+                        </div>
+                        <div class="order-history-cell">
+                            <span class="forge-typography--body2">23</span>
+                        </div>
+                        <div class="order-history-cell">
+                            <span class="forge-typography--body2">$63.78</span>
+                        </div>
+                        <div class="order-history-cell">
+                            <forge-badge theme="success">Fulfilled</forge-badge>
+                        </div>
+                        <div class="order-history-cell">
+                            <div class="order-actions">
+                                <forge-button variant="outlined" theme="success" density="compact">
+                                    <forge-icon slot="start" name="receipt" external></forge-icon>
+                                    Details
+                                </forge-button>
+                                <forge-button variant="outlined" theme="success" density="compact" onclick="openReorderDrawer('Jul 28, 2025', 23, 71.52)">
+                                    <forge-icon slot="start" name="refresh" external></forge-icon>
+                                    Reorder
+                                </forge-button>
+                            </div>
+                        </div>
+                    </div>
+                </forge-card>   
+
+            </div>
+        </div>
+        
+        <!-- Reorder Drawer -->
+        <div slot="body-right">
+            <forge-drawer id="reorder-drawer" direction="right" open="false">
+                <forge-toolbar slot="header" no-divider>
+                    <div slot="start">
+                        <p class="forge-typography--overline">Reorder from previous order</p>
+                    </div>
+                    <forge-icon-button slot="end" aria-label="Close drawer" onclick="closeReorderDrawer()">
+                        <forge-icon name="close" external></forge-icon>
+                    </forge-icon-button>
+                </forge-toolbar>
+                <aside class="drawer-content">
+                    <div id="reorder-items-container">
+                        <!-- Reorder items will be dynamically loaded here -->
+                    </div>
+                    
+                    <div class="reorder-summary">
+                        <div class="tax-subtotal-row-drawer">
+                            <div class="subtotal-item">
+                                <span class="subtotal-label">Subtotal:</span>
+                                <span class="subtotal-value" id="reorder-subtotal">$0.00</span>
+                            </div>
+                            <div class="tax-item">
+                                <span class="tax-label">Sales tax:</span>
+                                <span class="tax-value" id="reorder-tax">$0.00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="order-total-container">
+                            <span class="order-total-label">Order total:</span>
+                            <span class="order-total-value" id="reorder-total">$0.00</span>
+                        </div>
+                    </div>
+                </aside>
+                
+                <forge-toolbar inverted slot="footer">
+                    <forge-button slot="end" variant="raised" onclick="addReorderToCart()">
+                        <forge-icon slot="start" name="add_shopping_cart" external></forge-icon>
+                        Submit order
+                    </forge-button>
+                </forge-toolbar>
+            </forge-drawer>
+        </div>
+    </forge-scaffold>
+
+    <forge-bottom-sheet aria-labelledby="order-title" persistent id="mobile-order-sheet">
+        <div class="content">
+            <div class="mobile-order-summary">
+                <div class="order-summary-left">
+                    <forge-icon name="shopping_cart" external></forge-icon>
+                    <div class="order-summary-text">
+                        <div class="order-total-row">
+                            <span class="label">Order total</span>
+                            <span class="value" id="mobile-order-total">$0.00</span>
+                            <p class="forge-typography--body1" style="color: var(--forge-theme-text-medium);">(Total
+                                includes sales tax)</p>
+                        </div>
+                    </div>
+                </div>
+                <forge-button slot="end" variant="filled" onclick="showMobileOrderDialog()">View and submit order
+                    <forge-icon name="cart_arrow_right" external></forge-icon>
+                </forge-button>
+            </div>
+        </div>
+    </forge-bottom-sheet>
+
+    <!-- Mobile Order Dialog -->
+    <forge-dialog id="mobile-order-dialog" label="Order Details" description="Review and submit your commissary order">
+        <forge-scaffold>
+            <forge-toolbar slot="header">
+                <h2 slot="start" class="forge-typography--heading3">Order Details</h2>
+                <forge-icon-button slot="end" aria-label="Close dialog" onclick="closeMobileOrderDialog()">
+                    <forge-icon name="close" external></forge-icon>
+                </forge-icon-button>
+            </forge-toolbar>
+            <div slot="body" class="mobile-order-dialog-content">
+                <!-- Order items will be dynamically loaded here -->
+            </div>
+            <forge-toolbar slot="body-footer" inverted auto-height>
+                <div class="tax-subtotal-row">
+                    <span class="forge-typography--body2">Subtotal</span>
+                    <span class="forge-typography--body2">Sales tax</span>
+                </div>
+            </forge-toolbar>
+            <forge-toolbar slot="footer" inverted>
+                <div slot="start" class="mobile-order-dialog-total">
+                    <span class="forge-typography--body2">Order total: </span>
+                    <span class="forge-typography--heading3 amount" id="mobile-dialog-total">$0.00</span>
+                </div>
+                <forge-button slot="end" variant="raised" onclick="submitOrder()">
+                    Submit Order
+                    <forge-icon slot="end" name="send" external></forge-icon>
+                </forge-button>
+            </forge-toolbar>
+        </forge-scaffold>
+    </forge-dialog>
+
+
+</body>
+
+</html>

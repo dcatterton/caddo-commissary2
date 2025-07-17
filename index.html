@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.9.2/forge-core.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.9.2/theme/forge-theme.css" />
+  <link rel="stylesheet"
+    href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.9.2/typography/forge-typography.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.9.2/forge.css" />
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@3.9.2/index.js"></script>
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+  <script src="quantity-field.js"></script>
+  <script src="products.js"></script>
+</head>
+
+<body>
+  <forge-scaffold viewport>
+    <div slot="header">
+      <forge-app-bar title-text="Caddo Parish, LA" class="app-bar">
+        <forge-icon slot="logo" name="tyler_talking_t_logo" external></forge-icon>
+        <forge-icon-button slot="end" aria-label="Toggle full screen" onclick="toggleFullScreen()" id="fullscreen-toggle">
+          <forge-icon name="fullscreen" external></forge-icon>
+        </forge-icon-button>
+      </forge-app-bar>
+
+      <!-- <forge-card style="--forge-card-padding:0.5rem 1.5rem 0.5rem 0rem; --forge-card-shape: 0;">
+        <div class="header-card">
+          <div class="header-card-left">
+            <forge-icon-button aria-label="Go back">
+              <forge-icon name="arrow_back" external></forge-icon>
+            </forge-icon-button>
+            <h2 class="forge-typography--heading3" style="margin: 0; padding: 0;">New commissary order</h2>
+          </div>
+          <div class="header-card-right">
+            <div class="balance-section">
+              <p class="forge-typography--body2">Remaining balance: <span class="balance-amount">$21.72</span></p>
+              <forge-meter id="meter" max="100" density="small" theme="success"></forge-meter>
+            </div>
+            <forge-button variant="outlined" theme="success">
+              Past Orders
+            </forge-button>
+          </div>
+        </div>
+
+      </forge-card> -->
+
+    </div>
+    <div slot="body-header">
+      <forge-card style="--forge-card-padding:0.5rem 1.5rem 0.5rem 0rem; --forge-card-shape: 0;">
+        <div class="header-card">
+          <div class="header-card-left">
+            <forge-icon-button aria-label="Go back">
+              <forge-icon name="arrow_back" external></forge-icon>
+            </forge-icon-button>
+            <h2 class="forge-typography--heading3" style="margin: 0; padding: 0;">New commissary order</h2>
+          </div>
+          <div class="header-card-right">
+            <div class="balance-section">
+              <p class="forge-typography--label2">Remaining balance: <span class="balance-amount">$21.72</span></p>
+              <forge-meter id="meter" max="100" density="small" theme="success"></forge-meter>
+            </div>
+            <a href="order-history.html">
+              <forge-button variant="outlined" theme="success">
+                Order history
+              </forge-button>
+            </a>
+          </div>
+        </div>
+
+      </forge-card>
+    </div>
+    <div slot="body">
+      <div class="body-container">
+        <forge-text-field class="order-search-field" show-clear>
+          <forge-icon slot="start" name="search" external external-type="standard"></forge-icon>
+          <label>Search for item</label>
+          <input type="search" />
+        </forge-text-field>
+        <p class="forge-typography--subheading1" style="color: var(--forge-theme-text-medium); margin: 0 0 0.5rem 0;">Categories</p>
+        <forge-chip-set type="filter" id="category-chips">
+          <forge-chip value="all" type="filter" selected>All</forge-chip>
+          <forge-chip value="a" type="filter">A</forge-chip>
+          <forge-chip value="b" type="filter">B</forge-chip>
+          <forge-chip value="c" type="filter">C</forge-chip>
+          <forge-chip value="d" type="filter">D</forge-chip>
+          <forge-chip value="f" type="filter">F</forge-chip>
+          <forge-chip value="g" type="filter">G</forge-chip>
+          <forge-chip value="h" type="filter">H</forge-chip>
+          <forge-chip value="i" type="filter">I</forge-chip>
+          <forge-chip value="j" type="filter">J</forge-chip>
+          <forge-chip value="l" type="filter">L</forge-chip>
+          <forge-chip value="m" type="filter">M</forge-chip>
+          <forge-chip value="n" type="filter">N</forge-chip>
+          <forge-chip value="o" type="filter">O</forge-chip>
+          <forge-chip value="p" type="filter">P</forge-chip>
+          <forge-chip value="r" type="filter">R</forge-chip>
+          <forge-chip value="s" type="filter">S</forge-chip>
+          <forge-chip value="t" type="filter">T</forge-chip>
+          <forge-chip value="v" type="filter">V</forge-chip>
+          <forge-chip value="w" type="filter">W</forge-chip>
+        </forge-chip-set>
+        <div id="products-container">
+          <!-- Products will be dynamically loaded here -->
+        </div>
+      </div>
+    </div>
+    <div slot="body-right">
+      <forge-drawer open direction="right">
+        <forge-toolbar slot="header" no-divider>
+          <div slot="start"><p class="forge-typography--overline">Order details</p></div>
+          <div slot="end"><p class="forge-typography--body1 item-count" style="color: var(--forge-theme-text-medium);">4 items</p></div>
+          <!-- <forge-button slot="end" variant="tonal" onclick="clearOrder()" class="clear-order-btn" theme="error">
+            <forge-icon slot="start" name="delete" external></forge-icon>
+            Clear Order
+          </forge-button> -->
+        </forge-toolbar>
+        <aside class="drawer-content">
+
+        </aside>
+        
+        <forge-toolbar inverted slot="footer" auto-height style="--forge-toolbar-padding-block: 1rem;">
+          <div slot="start">
+            <div class="tax-subtotal-row-drawer">
+              <div class="subtotal-item">
+                <span class="subtotal-label forge-typography--body1">Subtotal:</span>
+                <span class="subtotal-value" id="drawer-subtotal">$0.00</span>
+              </div>
+              <div class="tax-item">
+                <span class="tax-label forge-typography--body1">Sales tax:</span>
+                <span class="tax-value" id="drawer-tax">$0.00</span>
+              </div>
+            </div>
+            <div class="order-total-container">
+              <span class="order-total-label forge-typography--heading1">Order total:</span>
+              <span class="order-total-value" id="order-total">$0.00</span>
+            </div>
+          </div>
+          <forge-button slot="end" variant="raised" onclick="submitOrder()">Submit order</forge-button>
+        </forge-toolbar>
+      </forge-drawer>
+    </div>
+  </forge-scaffold>
+
+  <forge-dialog id="mobile-order-sheet" mode="nonmodal" preset="bottom-sheet" size-strategy="container-inline" label="Order Summary" description="Review your commissary order">
+    <forge-button variant="filled" onclick="showMobileOrderDialog()" full-width class="mobile-order-button">
+      <forge-icon slot="start" name="shopping_cart" external></forge-icon>
+      <p class="forge-typography--heading2">Review your order – <span id="mobile-order-total">$0.00</span> total</p>
+    </forge-button>
+  </forge-dialog>
+
+  <!-- Mobile Order Dialog -->
+  <forge-dialog id="mobile-order-dialog" label="Order Details" description="Review and submit your commissary order" fullscreen>
+    <forge-scaffold>
+      <forge-toolbar slot="header">
+        <h2 slot="start" class="forge-typography--heading3">Order Details</h2>
+        <forge-icon-button slot="end" aria-label="Close dialog" onclick="closeMobileOrderDialog()">
+          <forge-icon name="close" external></forge-icon>
+        </forge-icon-button>
+      </forge-toolbar>
+      <div slot="body" class="mobile-order-dialog-content">
+        <!-- Order items will be dynamically loaded here -->
+      </div>
+      <forge-toolbar slot="footer" inverted auto-height style="--forge-toolbar-padding-block: 1rem;">
+        <div slot="center" class="mobile-order-summary">
+          <div class="mobile-cost-breakdown">
+            <div class="cost-row">
+              <span class="cost-label">Subtotal:</span>
+              <span class="cost-value" id="mobile-subtotal">$0.00</span>
+            </div>
+            <div class="cost-row">
+              <span class="cost-label">Sales tax:</span>
+              <span class="cost-value" id="mobile-tax">$0.00</span>
+            </div>
+            <div class="cost-divider"></div>
+            <div class="cost-row total-row">
+              <span class="cost-label total-label">Order total: </span>
+              <span class="cost-value total-value" id="mobile-dialog-total">$0.00</span>
+            </div>
+          </div>
+        </div>
+        <forge-button slot="end" variant="raised" onclick="submitOrder()">
+          Submit order
+        </forge-button>
+      </forge-toolbar>
+    </forge-scaffold>
+  </forge-dialog>
+
+  <!-- Quantity Selection Dialog -->
+  <forge-dialog id="quantity-selection-dialog" label="Add item to order" description="Select quantity for this item">
+    <forge-scaffold>
+      <forge-toolbar slot="header">
+        <h2 slot="start" class="forge-typography--heading3" id="quantity-dialog-title">Add item to order</h2>
+        <forge-icon-button slot="end" aria-label="Close dialog" onclick="closeQuantityDialog()">
+          <forge-icon name="close" external></forge-icon>
+        </forge-icon-button>
+      </forge-toolbar>
+      
+      <div slot="body" class="quantity-dialog-content">
+        <p class="forge-typography--subheading3" style="margin: 0px 0px 1rem 0px;">Select quantity</p>
+        <div class="quantity-options-grid" id="quantity-options-container">
+          <!-- Quantity options will be dynamically generated here -->
+        </div>
+        
+        <div class="custom-quantity-section">
+          <h3 class="forge-typography--subheading3">Other quantity</h3>
+          <div class="custom-quantity-row">
+            <forge-text-field>
+              <input type="number" id="custom-quantity-input" min="1" placeholder="Enter custom quantity" onclick="clearRadioSelection()">
+            </forge-text-field>
+            <div class="custom-quantity-total">
+              <span class="total-label">Total:</span>
+              <span class="total-amount" id="custom-quantity-total">$0.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <forge-toolbar slot="footer" inverted>
+        <div slot="start">
+          <div class="quantity-dialog-balance-section">
+            <p class="forge-typography--body1">Remaining balance: <span class="balance-amount forge-typography--heading2" id="quantity-dialog-remaining-balance">$21.72</span></p>
+            <forge-meter id="quantity-dialog-meter" max="100" density="small" theme="success"></forge-meter>
+          </div>
+        </div>
+        <div slot="end">
+          <forge-button variant="outlined" onclick="closeQuantityDialog()">
+            Cancel
+          </forge-button>
+          <forge-button variant="raised" id="add-to-order-btn" theme="success">
+            Add to order
+          </forge-button>
+        </div>
+      </forge-toolbar>
+    </forge-scaffold>
+  </forge-dialog>
+
+  <!-- Order Confirmation Dialog -->
+  <forge-dialog id="order-confirmation-dialog" label="Order Confirmation" description="Review and confirm your commissary order">
+    <forge-scaffold>
+      <forge-toolbar slot="header">
+        <h2 slot="start" class="forge-typography--heading3">Order Confirmation</h2>
+        <forge-icon-button slot="end" aria-label="Close dialog" onclick="closeOrderConfirmationDialog()">
+          <forge-icon name="close" external></forge-icon>
+        </forge-icon-button>
+      </forge-toolbar>
+      
+      <div slot="body" class="order-confirmation-content">
+        <!-- Order Summary Section -->
+        <!-- <div class="confirmation-section">
+          <h3 class="forge-typography--heading4">Order Summary</h3>
+          <div id="confirmation-items-list">
+           Order items will be populated here
+          </div>
+        </div> -->
+        
+        <!-- Customer Information Section -->
+        <div class="confirmation-section">
+          <h3 class="forge-typography--overline">Customer Information</h3>
+          <div class="customer-info-grid">
+            <div class="info-row">
+              <span class="info-label">Inmate ID:</span>
+              <span class="info-value">#12345</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Name:</span>
+              <span class="info-value">John Doe</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Facility:</span>
+              <span class="info-value">Caddo Parish Correctional Center</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Order Date:</span>
+              <span class="info-value" id="order-date">Today</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Remaining Balance:</span>
+              <span class="info-value" id="remaining-balance-confirmation">$21.72</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Order Details Section -->
+        <div class="confirmation-section">
+          <h3 class="forge-typography--overline">Order Details</h3>
+          <div class="order-details-grid">
+            <div class="detail-row">
+              <span class="detail-label">Subtotal:</span>
+              <span class="detail-value" id="confirmation-subtotal">$0.00</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Sales Tax:</span>
+              <span class="detail-value" id="confirmation-tax">$0.00</span>
+            </div>
+            <div class="detail-row total-row">
+              <span class="detail-label">Order Total:</span>
+              <span class="detail-value total-value" id="confirmation-total">$0.00</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Terms and Conditions -->
+        <div class="confirmation-section">
+          <h3 class="forge-typography--overline">Terms & Conditions</h3>
+          <div class="terms-content">
+            <p class="forge-typography--body2">
+              By submitting this order, you agree to the following terms:
+            </p>
+            <ul class="terms-list">
+              <li>Orders are processed within 24-48 hours</li>
+              <li>All sales are final - no returns or exchanges</li>
+              <li>Items are subject to availability</li>
+              <li>Orders may be modified or cancelled before processing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <forge-toolbar slot="footer" inverted>
+        <div slot="start">
+          <forge-button variant="outlined" onclick="closeOrderConfirmationDialog()">
+            Cancel
+          </forge-button>
+        </div>
+        <div slot="end">
+          <forge-button variant="raised" onclick="confirmAndSubmitOrder()" theme="success">
+            <forge-icon slot="start" name="check_circle" external></forge-icon>
+            Confirm and submit Order
+          </forge-button>
+        </div>
+      </forge-toolbar>
+    </forge-scaffold>
+  </forge-dialog>
+
+</body>
+
+</html>

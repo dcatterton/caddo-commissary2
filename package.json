@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@tylertech/forge": "^3.9.2",
+    "@tylertech/forge-extended": "^1.0.0"
+  }
+}
