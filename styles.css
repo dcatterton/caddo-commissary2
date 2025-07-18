@@ -1274,7 +1274,7 @@ forge-card {
 }
 
 .mobile-quantity-footer {
-  padding: 2rem;
+  padding: 1rem 2rem 3rem 2rem;
   border-top: 1px solid var(--forge-theme-outline);
   background-color: var(--forge-theme-surface);
   display: flex;
