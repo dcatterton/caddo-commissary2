@@ -57,6 +57,22 @@ html {
   --forge-app-bar-foreground: #fff;
 }
 
+.inmate-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 1rem;
+}
+
+.inmate-info p {
+  margin: 0;
+}
+
+.inmate-info-name-id {
+  display: flex;
+  flex-direction: column;
+}
+
 .drawer-content {
   padding: 0rem 1rem;;
 }
@@ -497,7 +513,7 @@ span.item-total {
 
 /* Mobile dialog order items */
 .mobile-order-dialog-content .order-item {
-  padding: 2rem;
+  padding: 1rem;
   border-bottom: 1px solid var(--forge-theme-outline);
   margin: 0;
 }
@@ -1010,7 +1026,7 @@ forge-card {
 
 .quantity-options-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
   margin-bottom: 1rem;
 }
@@ -1135,7 +1151,7 @@ forge-card {
 /* Mobile responsive adjustments */
 @media (max-width: 768px) {
   .quantity-options-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 0.75rem;
   }
   
@@ -1153,7 +1169,7 @@ forge-card {
   }
   
   .mobile-quantity-body .quantity-options-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
   }
   

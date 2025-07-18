@@ -224,7 +224,7 @@ function renderProductsForLetter(letter, products = null) {
     
     // Calculate current order total and remaining balance
     const currentSubtotal = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const remainingBalance = 21.72 - currentSubtotal;
+    const remainingBalance = 112.87 - currentSubtotal;
     // Check if user can afford at least 1 of this item
     const canAffordItem = remainingBalance >= product.price;
     
@@ -386,7 +386,7 @@ function createMobileQuantityDialog(productName, price) {
       <div class="mobile-quantity-footer">
         <div class="mobile-quantity-balance">
           <div class="quantity-dialog-balance-section">
-            <p class="forge-typography--body1">Remaining balance: <span class="balance-amount forge-typography--heading2" id="mobile-quantity-remaining-balance">$21.72</span></p>
+            <p class="forge-typography--body1">Remaining balance: <span class="balance-amount forge-typography--heading2" id="mobile-quantity-remaining-balance">$112.87</span></p>
             <forge-meter id="mobile-quantity-dialog-meter" max="100" density="small" theme="success"></forge-meter>
           </div>
         </div>
@@ -442,25 +442,25 @@ function populateMobileQuantityDialogContent(productName, price) {
   // Initialize meter with current order state
   if (meterElement) {
     const currentSubtotal = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const initialBalance = 21.72;
+    const initialBalance = 112.87;
     const usedBalance = Math.min(currentSubtotal, initialBalance);
     const meterProgress = Math.round((usedBalance / initialBalance) * 100);
     const clampedValue = Math.max(0, Math.min(100, meterProgress));
     meterElement.value = clampedValue;
   }
   
-  // Generate quantity options (1-15)
+  // Generate quantity options (1-20)
   if (quantityOptionsContainer) {
     let optionsHtml = '';
     
-    // Create 3 columns of 5 options each
-    for (let col = 0; col < 3; col++) {
+    // Create 5 columns of 4 options each
+    for (let col = 0; col < 5; col++) {
       optionsHtml += '<div class="quantity-column">';
-      for (let i = col * 5 + 1; i <= (col + 1) * 5; i++) {
+      for (let i = col * 4 + 1; i <= (col + 1) * 4; i++) {
         const totalPrice = price * i;
         const currentSubtotal = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         const totalAfterAdd = currentSubtotal + totalPrice;
-        const remainingBalance = 21.72;
+        const remainingBalance = 112.87;
         const isDisabled = totalAfterAdd > remainingBalance;
         
         optionsHtml += `
@@ -603,14 +603,14 @@ function updateMobileDialogRemainingBalance(selectedQuantity) {
   
   // Calculate remaining balance after adding this item
   const totalAfterAdd = currentSubtotal + selectedItemCost;
-  const remainingBalance = Math.max(0, 21.72 - totalAfterAdd);
+  const remainingBalance = Math.max(0, 112.87 - totalAfterAdd);
   
   // Update the display
   remainingBalanceElement.textContent = `$${remainingBalance.toFixed(2)}`;
   
   // Update the meter value
   if (meterElement) {
-    const initialBalance = 21.72;
+    const initialBalance = 112.87;
     const usedBalance = Math.min(totalAfterAdd, initialBalance);
     const meterProgress = Math.round((usedBalance / initialBalance) * 100);
     const clampedValue = Math.max(0, Math.min(100, meterProgress));
@@ -618,7 +618,7 @@ function updateMobileDialogRemainingBalance(selectedQuantity) {
   }
   
   // Change color based on whether this would exceed balance
-  if (totalAfterAdd > 21.72) {
+  if (totalAfterAdd > 112.87) {
     remainingBalanceElement.style.color = 'var(--forge-theme-error)';
   } else {
     remainingBalanceElement.style.color = 'var(--forge-theme-success)';
@@ -651,7 +651,7 @@ function addSelectedQuantityToMobileOrder() {
   const newItemTotal = currentQuantityDialogPrice * quantity;
   const totalSubtotalAfterAdd = currentSubtotal + newItemTotal;
   const totalAfterTax = totalSubtotalAfterAdd; // No sales tax
-  const remainingBalance = 21.72;
+  const remainingBalance = 112.87;
   
   if (totalAfterTax > remainingBalance) {
     alert(`Cannot add item. This would exceed your remaining balance of $${remainingBalance.toFixed(2)}.`);
@@ -702,25 +702,25 @@ function populateQuantityDialog(productName, price) {
   // Initialize meter with current order state
   if (meterElement) {
     const currentSubtotal = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const initialBalance = 21.72;
+    const initialBalance = 112.87;
     const usedBalance = Math.min(currentSubtotal, initialBalance);
     const meterProgress = Math.round((usedBalance / initialBalance) * 100);
     const clampedValue = Math.max(0, Math.min(100, meterProgress));
     meterElement.value = clampedValue;
   }
   
-  // Generate quantity options (1-15)
+  // Generate quantity options (1-20)
   if (quantityOptionsContainer) {
     let optionsHtml = '';
     
-    // Create 3 columns of 5 options each
-    for (let col = 0; col < 3; col++) {
+    // Create 5 columns of 4 options each
+    for (let col = 0; col < 5; col++) {
       optionsHtml += '<div class="quantity-column">';
-      for (let i = col * 5 + 1; i <= (col + 1) * 5; i++) {
+      for (let i = col * 4 + 1; i <= (col + 1) * 4; i++) {
         const totalPrice = price * i;
         const currentSubtotal = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         const totalAfterAdd = currentSubtotal + totalPrice;
-        const remainingBalance = 21.72;
+        const remainingBalance = 112.87;
         const isDisabled = totalAfterAdd > remainingBalance;
         
         optionsHtml += `
@@ -896,14 +896,14 @@ function updateDialogRemainingBalance(selectedQuantity) {
   
   // Calculate remaining balance after adding this item
   const totalAfterAdd = currentSubtotal + selectedItemCost;
-  const remainingBalance = Math.max(0, 21.72 - totalAfterAdd);
+  const remainingBalance = Math.max(0, 112.87 - totalAfterAdd);
   
   // Update the display
   remainingBalanceElement.textContent = `$${remainingBalance.toFixed(2)}`;
   
   // Update the meter value
   if (meterElement) {
-    const initialBalance = 21.72;
+    const initialBalance = 112.87;
     const usedBalance = Math.min(totalAfterAdd, initialBalance);
     const meterProgress = Math.round((usedBalance / initialBalance) * 100);
     const clampedValue = Math.max(0, Math.min(100, meterProgress));
@@ -911,7 +911,7 @@ function updateDialogRemainingBalance(selectedQuantity) {
   }
   
   // Change color based on whether this would exceed balance
-  if (totalAfterAdd > 21.72) {
+  if (totalAfterAdd > 112.87) {
     remainingBalanceElement.style.color = 'var(--forge-theme-error)';
   } else {
     remainingBalanceElement.style.color = 'var(--forge-theme-success)';
@@ -949,7 +949,7 @@ function addSelectedQuantityToOrder(event = null) {
   const newItemTotal = currentQuantityDialogPrice * quantity;
   const totalSubtotalAfterAdd = currentSubtotal + newItemTotal;
   const totalAfterTax = totalSubtotalAfterAdd; // No sales tax
-  const remainingBalance = 21.72;
+  const remainingBalance = 112.87;
   
   if (totalAfterTax > remainingBalance) {
     alert(`Cannot add item. This would exceed your remaining balance of $${remainingBalance.toFixed(2)}.`);
@@ -1191,8 +1191,8 @@ function updateOrderDisplay() {
     if (orderContainer) orderContainer.innerHTML = emptyMessage;
     if (totalElement) totalElement.textContent = '$0.00';
     if (mobileOrderTotal) mobileOrderTotal.textContent = '$0.00';
-    if (mobileRemainingBalance) mobileRemainingBalance.textContent = '$21.72';
-    if (headerRemainingBalance) headerRemainingBalance.textContent = '$21.72';
+    if (mobileRemainingBalance) mobileRemainingBalance.textContent = '$112.87';
+    if (headerRemainingBalance) headerRemainingBalance.textContent = '$112.87';
     if (headerMeter) headerMeter.value = 0;
     if (clearOrderBtn) clearOrderBtn.style.display = 'none';
     if (drawerSubtotal) drawerSubtotal.textContent = '$0.00';
@@ -1259,11 +1259,11 @@ function updateOrderDisplay() {
   const orderTotal = total + salesTax;
   
   const totalText = `$${orderTotal.toFixed(2)}`;
-  const remainingBalance = Math.max(0, 21.72 - orderTotal);
+  const remainingBalance = Math.max(0, 112.87 - orderTotal);
   
   // Calculate meter progress based on used balance (including tax)
   // Meter should show the percentage of balance used, not remaining
-  const initialBalance = 21.72;
+  const initialBalance = 112.87;
   const usedBalance = Math.min(orderTotal, initialBalance);
   const meterProgress = Math.round((usedBalance / initialBalance) * 100);
   
@@ -1325,7 +1325,7 @@ function increaseOrderQuantity(productName) {
     }, 0);
     
     const totalAfterTax = currentSubtotal; // No sales tax
-    const remainingBalance = 21.72;
+    const remainingBalance = 112.87;
     
     if (totalAfterTax > remainingBalance) {
       alert(`Cannot increase quantity. This would exceed your remaining balance of $${remainingBalance.toFixed(2)}.`);
@@ -1365,7 +1365,7 @@ function updateOrderQuantity(productName, newQuantity) {
     }, 0);
     
     const totalAfterTax = currentSubtotal; // No sales tax
-    const remainingBalance = 21.72;
+    const remainingBalance = 112.87;
     
     if (totalAfterTax > remainingBalance) {
       alert(`Cannot set quantity to ${quantity}. This would exceed your remaining balance of $${remainingBalance.toFixed(2)}.`);
@@ -1462,7 +1462,7 @@ function populateConfirmationDialog() {
   const subtotal = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const salesTax = subtotal * 0.00;
   const orderTotal = subtotal + salesTax;
-  const remainingBalance = 21.72 - orderTotal;
+  const remainingBalance = 112.87 - orderTotal;
   
   // Set current date
   const today = new Date();
