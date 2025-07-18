@@ -524,6 +524,44 @@ span.item-total {
 
 .mobile-order-dialog-content .order-item-header {
   margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.mobile-order-dialog-content .order-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.mobile-order-dialog-content .order-item-left img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.mobile-order-dialog-content .order-item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.mobile-order-dialog-content .order-item-details .product-name {
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.mobile-order-dialog-content .order-item-details p:last-child {
+  margin: 0;
+  color: var(--forge-theme-on-surface-variant);
+  font-size: 14px;
 }
 
 .mobile-order-dialog-content .order-item-controls {
@@ -807,7 +845,7 @@ forge-dialog {
 
 .order-confirmation-content {
   overflow-y: auto;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .confirmation-section {
@@ -822,7 +860,7 @@ forge-dialog {
 }
 
 .confirmation-section h3 {
-  margin: 0 0 1rem 0;
+  margin: 0 0 0 0;
   color: var(--forge-theme-on-surface);
   font-weight: 600;
 }
@@ -1236,7 +1274,7 @@ forge-card {
 }
 
 .mobile-quantity-footer {
-  padding: 1rem;
+  padding: 2rem;
   border-top: 1px solid var(--forge-theme-outline);
   background-color: var(--forge-theme-surface);
   display: flex;
@@ -1272,7 +1310,7 @@ forge-card {
 }
 
 .mobile-quantity-body .custom-quantity-section {
-  padding-top: 1rem;
+  padding-top: 0;
 }
 
 .mobile-quantity-body .custom-quantity-section h3 {

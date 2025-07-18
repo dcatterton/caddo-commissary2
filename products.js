@@ -1126,7 +1126,12 @@ function updateMobileOrderDialog() {
     html += `
       <div class="order-item">
         <div class="order-item-header">
-          <p class="forge-typography--body2 product-name">${item.name}</p>
+          <div class="order-item-left">
+            <div class="order-item-details">
+              <p class="forge-typography--body2 product-name">${item.name}</p>
+              <p class="forge-typography--subheading3">$${item.price.toFixed(2)} each</p>
+            </div>
+          </div>
           <p class="forge-typography--heading2 product-price">$${itemTotal.toFixed(2)}</p>
         </div>
         <div class="order-item-controls">

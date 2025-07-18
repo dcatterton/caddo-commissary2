@@ -158,7 +158,7 @@
   <!-- Mobile Order Dialog -->
   <forge-dialog id="mobile-order-dialog" label="Order Details" description="Review and submit your commissary order" fullscreen>
     <forge-scaffold>
-      <forge-toolbar slot="header">
+      <forge-toolbar slot="header" auto-height style="--forge-toolbar-padding-block: 1rem;">
         <h2 slot="start" class="forge-typography--heading3">Order Details</h2>
         <forge-icon-button slot="end" aria-label="Close dialog" onclick="closeMobileOrderDialog()">
           <forge-icon name="close" external></forge-icon>
@@ -167,7 +167,7 @@
       <div slot="body" class="mobile-order-dialog-content">
         <!-- Order items will be dynamically loaded here -->
       </div>
-      <forge-toolbar slot="footer" inverted auto-height style="--forge-toolbar-padding-block: 1rem;">
+      <forge-toolbar slot="footer" inverted auto-height style="--forge-toolbar-padding-block: 2rem;">
         <div slot="center" class="mobile-order-summary">
           <div class="mobile-cost-breakdown">
             <div class="cost-row">
@@ -266,11 +266,11 @@
           <div class="customer-info-grid">
             <div class="info-row">
               <span class="info-label">Inmate ID:</span>
-              <span class="info-value">#12345</span>
+              <span class="info-value">144109</span>
             </div>
             <div class="info-row">
               <span class="info-label">Name:</span>
-              <span class="info-value">John Doe</span>
+              <span class="info-value">Mia Tamya Waklker</span>
             </div>
             <div class="info-row">
               <span class="info-label">Facility:</span>
