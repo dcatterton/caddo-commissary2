@@ -1063,15 +1063,15 @@ forge-card {
 }
 
 .quantity-options-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
   margin-bottom: 1rem;
 }
 
-.quantity-column {
-  display: flex;
-  flex-direction: column;
+.quantity-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
 }
 
@@ -1189,11 +1189,10 @@ forge-card {
 /* Mobile responsive adjustments */
 @media (max-width: 768px) {
   .quantity-options-grid {
-    grid-template-columns: repeat(5, 1fr);
     gap: 0.75rem;
   }
   
-  .quantity-column {
+  .quantity-row {
     gap: 0.75rem;
   }
   

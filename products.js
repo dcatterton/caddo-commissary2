@@ -453,10 +453,11 @@ function populateMobileQuantityDialogContent(productName, price) {
   if (quantityOptionsContainer) {
     let optionsHtml = '';
     
-    // Create 5 columns of 4 options each
-    for (let col = 0; col < 5; col++) {
-      optionsHtml += '<div class="quantity-column">';
-      for (let i = col * 4 + 1; i <= (col + 1) * 4; i++) {
+    // Create 4 rows of 5 options each (left to right)
+    for (let row = 0; row < 4; row++) {
+      optionsHtml += '<div class="quantity-row">';
+      for (let col = 0; col < 5; col++) {
+        const i = row * 5 + col + 1;
         const totalPrice = price * i;
         const currentSubtotal = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         const totalAfterAdd = currentSubtotal + totalPrice;
@@ -713,10 +714,11 @@ function populateQuantityDialog(productName, price) {
   if (quantityOptionsContainer) {
     let optionsHtml = '';
     
-    // Create 5 columns of 4 options each
-    for (let col = 0; col < 5; col++) {
-      optionsHtml += '<div class="quantity-column">';
-      for (let i = col * 4 + 1; i <= (col + 1) * 4; i++) {
+    // Create 4 rows of 5 options each (left to right)
+    for (let row = 0; row < 4; row++) {
+      optionsHtml += '<div class="quantity-row">';
+      for (let col = 0; col < 5; col++) {
+        const i = row * 5 + col + 1;
         const totalPrice = price * i;
         const currentSubtotal = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         const totalAfterAdd = currentSubtotal + totalPrice;
