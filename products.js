@@ -224,7 +224,7 @@ function renderProductsForLetter(letter, products = null) {
     
     // Calculate current order total and remaining balance
     const currentSubtotal = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const remainingBalance = 617.94 - currentSubtotal;
+    const remainingBalance = 112.87 - currentSubtotal;
     // Check if user can afford at least 1 of this item
     const canAffordItem = remainingBalance >= product.price;
     
@@ -386,7 +386,7 @@ function createMobileQuantityDialog(productName, price) {
       <div class="mobile-quantity-footer">
         <div class="mobile-quantity-balance">
           <div class="quantity-dialog-balance-section">
-            <p class="forge-typography--body1">Remaining balance: <span class="balance-amount forge-typography--heading2" id="mobile-quantity-remaining-balance">$617.94</span></p>
+            <p class="forge-typography--body1">Remaining balance: <span class="balance-amount forge-typography--heading2" id="mobile-quantity-remaining-balance">$112.87</span></p>
             <forge-meter id="mobile-quantity-dialog-meter" max="100" density="small" theme="success"></forge-meter>
           </div>
         </div>
@@ -442,7 +442,7 @@ function populateMobileQuantityDialogContent(productName, price) {
   // Initialize meter with current order state
   if (meterElement) {
     const currentSubtotal = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const initialBalance = 617.94;
+    const initialBalance = 112.87;
     const usedBalance = Math.min(currentSubtotal, initialBalance);
     const meterProgress = Math.round((usedBalance / initialBalance) * 100);
     const clampedValue = Math.max(0, Math.min(100, meterProgress));
@@ -461,7 +461,7 @@ function populateMobileQuantityDialogContent(productName, price) {
         const totalPrice = price * i;
         const currentSubtotal = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         const totalAfterAdd = currentSubtotal + totalPrice;
-        const remainingBalance = 617.94;
+        const remainingBalance = 112.87;
         const isDisabled = totalAfterAdd > remainingBalance;
         
         optionsHtml += `
@@ -604,14 +604,14 @@ function updateMobileDialogRemainingBalance(selectedQuantity) {
   
   // Calculate remaining balance after adding this item
   const totalAfterAdd = currentSubtotal + selectedItemCost;
-  const remainingBalance = Math.max(0, 617.94 - totalAfterAdd);
+  const remainingBalance = Math.max(0, 112.87 - totalAfterAdd);
   
   // Update the display
   remainingBalanceElement.textContent = `$${remainingBalance.toFixed(2)}`;
   
   // Update the meter value
   if (meterElement) {
-    const initialBalance = 617.94;
+    const initialBalance = 112.87;
     const usedBalance = Math.min(totalAfterAdd, initialBalance);
     const meterProgress = Math.round((usedBalance / initialBalance) * 100);
     const clampedValue = Math.max(0, Math.min(100, meterProgress));
@@ -619,7 +619,7 @@ function updateMobileDialogRemainingBalance(selectedQuantity) {
   }
   
   // Change color based on whether this would exceed balance
-  if (totalAfterAdd > 617.94) {
+  if (totalAfterAdd > 112.87) {
     remainingBalanceElement.style.color = 'var(--forge-theme-error)';
   } else {
     remainingBalanceElement.style.color = 'var(--forge-theme-success)';
@@ -652,7 +652,7 @@ function addSelectedQuantityToMobileOrder() {
   const newItemTotal = currentQuantityDialogPrice * quantity;
   const totalSubtotalAfterAdd = currentSubtotal + newItemTotal;
   const totalAfterTax = totalSubtotalAfterAdd; // No sales tax
-  const remainingBalance = 617.94;
+  const remainingBalance = 112.87;
   
   if (totalAfterTax > remainingBalance) {
     alert(`Cannot add item. This would exceed your remaining balance of $${remainingBalance.toFixed(2)}.`);
@@ -675,7 +675,7 @@ function addSelectedQuantityToMobileOrder() {
   updateOrderDisplay();
   
   // Save order to localStorage
-  saveOrderToStorage();
+  saveOrder();
   
   // Show toast notification for added items
   showAddToOrderToast(quantity, currentQuantityDialogProduct);
@@ -706,7 +706,7 @@ function populateQuantityDialog(productName, price) {
   // Initialize meter with current order state
   if (meterElement) {
     const currentSubtotal = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const initialBalance = 617.94;
+    const initialBalance = 112.87;
     const usedBalance = Math.min(currentSubtotal, initialBalance);
     const meterProgress = Math.round((usedBalance / initialBalance) * 100);
     const clampedValue = Math.max(0, Math.min(100, meterProgress));
@@ -725,7 +725,7 @@ function populateQuantityDialog(productName, price) {
         const totalPrice = price * i;
         const currentSubtotal = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         const totalAfterAdd = currentSubtotal + totalPrice;
-        const remainingBalance = 617.94;
+        const remainingBalance = 112.87;
         const isDisabled = totalAfterAdd > remainingBalance;
         
         optionsHtml += `
@@ -901,14 +901,14 @@ function updateDialogRemainingBalance(selectedQuantity) {
   
   // Calculate remaining balance after adding this item
   const totalAfterAdd = currentSubtotal + selectedItemCost;
-  const remainingBalance = Math.max(0, 617.94 - totalAfterAdd);
+  const remainingBalance = Math.max(0, 112.87 - totalAfterAdd);
   
   // Update the display
   remainingBalanceElement.textContent = `$${remainingBalance.toFixed(2)}`;
   
   // Update the meter value
   if (meterElement) {
-    const initialBalance = 617.94;
+    const initialBalance = 112.87;
     const usedBalance = Math.min(totalAfterAdd, initialBalance);
     const meterProgress = Math.round((usedBalance / initialBalance) * 100);
     const clampedValue = Math.max(0, Math.min(100, meterProgress));
@@ -916,7 +916,7 @@ function updateDialogRemainingBalance(selectedQuantity) {
   }
   
   // Change color based on whether this would exceed balance
-  if (totalAfterAdd > 617.94) {
+  if (totalAfterAdd > 112.87) {
     remainingBalanceElement.style.color = 'var(--forge-theme-error)';
   } else {
     remainingBalanceElement.style.color = 'var(--forge-theme-success)';
@@ -954,7 +954,7 @@ function addSelectedQuantityToOrder(event = null) {
   const newItemTotal = currentQuantityDialogPrice * quantity;
   const totalSubtotalAfterAdd = currentSubtotal + newItemTotal;
   const totalAfterTax = totalSubtotalAfterAdd; // No sales tax
-  const remainingBalance = 617.94;
+  const remainingBalance = 112.87;
   
   if (totalAfterTax > remainingBalance) {
     alert(`Cannot add item. This would exceed your remaining balance of $${remainingBalance.toFixed(2)}.`);
@@ -977,7 +977,7 @@ function addSelectedQuantityToOrder(event = null) {
   updateOrderDisplay();
   
   // Save order to localStorage
-  saveOrderToStorage();
+  saveOrder();
   
   // Show toast notification for added items
   showAddToOrderToast(quantity, currentQuantityDialogProduct);
@@ -1078,172 +1078,37 @@ function addSelectedQuantityToOrder(event = null) {
 // Order management
 let currentOrder = [];
 
-// Local storage keys
-const ORDER_STORAGE_KEY = 'caddo_commissary_order';
-const ORDER_TIMESTAMP_KEY = 'caddo_commissary_order_timestamp';
-const ORDER_EXPIRY_HOURS = 24; // Orders expire after 24 hours
-
-// Save order to localStorage
-function saveOrderToStorage() {
+// Load saved order from localStorage on page load
+function loadSavedOrder() {
   try {
-    localStorage.setItem(ORDER_STORAGE_KEY, JSON.stringify(currentOrder));
-    localStorage.setItem(ORDER_TIMESTAMP_KEY, Date.now().toString());
-    console.log('Order saved to localStorage:', currentOrder);
-    
-    // Update clear button visibility
-    updateClearSavedOrderButton();
-  } catch (error) {
-    console.error('Error saving order to localStorage:', error);
-  }
-}
-
-// Load order from localStorage
-function loadOrderFromStorage() {
-  try {
-    const savedOrder = localStorage.getItem(ORDER_STORAGE_KEY);
-    const savedTimestamp = localStorage.getItem(ORDER_TIMESTAMP_KEY);
-    
-    if (savedOrder && savedTimestamp) {
-      const orderAge = Date.now() - parseInt(savedTimestamp);
-      const orderAgeHours = orderAge / (1000 * 60 * 60);
-      
-      // Check if order has expired (older than 24 hours)
-      if (orderAgeHours > ORDER_EXPIRY_HOURS) {
-        console.log('Saved order has expired, clearing localStorage');
-        clearOrderFromStorage();
-        return false;
-      }
-      
-      const parsedOrder = JSON.parse(savedOrder);
-      if (Array.isArray(parsedOrder)) {
-        currentOrder = parsedOrder;
-        console.log('Order loaded from localStorage:', currentOrder);
-        return true;
-      }
+    const savedOrder = localStorage.getItem('caddoCommissaryOrder');
+    if (savedOrder) {
+      currentOrder = JSON.parse(savedOrder);
+      console.log('Loaded saved order:', currentOrder);
     }
   } catch (error) {
-    console.error('Error loading order from localStorage:', error);
-    clearOrderFromStorage();
-  }
-  return false;
-}
-
-// Clear order from localStorage
-function clearOrderFromStorage() {
-  try {
-    localStorage.removeItem(ORDER_STORAGE_KEY);
-    localStorage.removeItem(ORDER_TIMESTAMP_KEY);
-    console.log('Order cleared from localStorage');
-    
-    // Update clear button visibility
-    updateClearSavedOrderButton();
-  } catch (error) {
-    console.error('Error clearing order from localStorage:', error);
-  }
-}
-
-// Check if there's a saved order on page load
-function checkForSavedOrder() {
-  const hasSavedOrder = loadOrderFromStorage();
-  if (hasSavedOrder && currentOrder.length > 0) {
-    // Show a notification that a saved order was found
-    showSavedOrderNotification();
-  }
-}
-
-// Show notification about saved order
-function showSavedOrderNotification() {
-  const toast = document.createElement('div');
-  toast.className = 'custom-toast';
-  
-  toast.innerHTML = `
-    <div class="custom-toast-content">
-      <forge-icon name="restore" external></forge-icon>
-      <span class="custom-toast-message">Previous order restored from ${formatOrderAge()}</span>
-    </div>
-  `;
-  
-  document.body.appendChild(toast);
-  
-  setTimeout(() => {
-    toast.classList.add('show');
-  }, 10);
-  
-  setTimeout(() => {
-    toast.classList.remove('show');
-    setTimeout(() => {
-      if (document.body.contains(toast)) {
-        document.body.removeChild(toast);
-      }
-    }, 300);
-  }, 4000);
-}
-
-// Format the age of the saved order
-function formatOrderAge() {
-  try {
-    const savedTimestamp = localStorage.getItem(ORDER_TIMESTAMP_KEY);
-    if (savedTimestamp) {
-      const orderAge = Date.now() - parseInt(savedTimestamp);
-      const orderAgeMinutes = Math.floor(orderAge / (1000 * 60));
-      
-      if (orderAgeMinutes < 1) {
-        return 'just now';
-      } else if (orderAgeMinutes < 60) {
-        return `${orderAgeMinutes} minute${orderAgeMinutes === 1 ? '' : 's'} ago`;
-      } else {
-        const orderAgeHours = Math.floor(orderAgeMinutes / 60);
-        return `${orderAgeHours} hour${orderAgeHours === 1 ? '' : 's'} ago`;
-      }
-    }
-  } catch (error) {
-    console.error('Error formatting order age:', error);
-  }
-  return 'recently';
-}
-
-// Clear saved order function
-function clearSavedOrder() {
-  if (confirm('Are you sure you want to clear your saved order? This action cannot be undone.')) {
+    console.error('Error loading saved order:', error);
     currentOrder = [];
-    clearOrderFromStorage();
-    updateOrderDisplay();
-    updateClearSavedOrderButton();
-    
-    // Show confirmation toast
-    const toast = document.createElement('div');
-    toast.className = 'custom-toast';
-    
-    toast.innerHTML = `
-      <div class="custom-toast-content">
-        <forge-icon name="delete" external></forge-icon>
-        <span class="custom-toast-message">Saved order cleared</span>
-      </div>
-    `;
-    
-    document.body.appendChild(toast);
-    
-    setTimeout(() => {
-      toast.classList.add('show');
-    }, 10);
-    
-    setTimeout(() => {
-      toast.classList.remove('show');
-      setTimeout(() => {
-        if (document.body.contains(toast)) {
-          document.body.removeChild(toast);
-        }
-      }, 300);
-    }, 3000);
   }
 }
 
-// Update clear saved order button visibility
-function updateClearSavedOrderButton() {
-  const clearButton = document.getElementById('clear-saved-order');
-  if (clearButton) {
-    const hasSavedOrder = localStorage.getItem(ORDER_STORAGE_KEY) !== null;
-    clearButton.style.display = hasSavedOrder ? 'flex' : 'none';
+// Save current order to localStorage
+function saveOrder() {
+  try {
+    localStorage.setItem('caddoCommissaryOrder', JSON.stringify(currentOrder));
+    console.log('Order saved to localStorage');
+  } catch (error) {
+    console.error('Error saving order:', error);
+  }
+}
+
+// Clear saved order from localStorage
+function clearSavedOrder() {
+  try {
+    localStorage.removeItem('caddoCommissaryOrder');
+    console.log('Saved order cleared from localStorage');
+  } catch (error) {
+    console.error('Error clearing saved order:', error);
   }
 }
 
@@ -1373,8 +1238,8 @@ function updateOrderDisplay() {
     if (orderContainer) orderContainer.innerHTML = emptyMessage;
     if (totalElement) totalElement.textContent = '$0.00';
     if (mobileOrderTotal) mobileOrderTotal.textContent = '$0.00';
-    if (mobileRemainingBalance) mobileRemainingBalance.textContent = '$617.94';
-    if (headerRemainingBalance) headerRemainingBalance.textContent = '$617.94';
+    if (mobileRemainingBalance) mobileRemainingBalance.textContent = '$112.87';
+    if (headerRemainingBalance) headerRemainingBalance.textContent = '$112.87';
     if (headerMeter) headerMeter.value = 0;
     if (clearOrderBtn) clearOrderBtn.style.display = 'none';
     if (drawerSubtotal) drawerSubtotal.textContent = '$0.00';
@@ -1441,11 +1306,11 @@ function updateOrderDisplay() {
   const orderTotal = total + salesTax;
   
   const totalText = `$${orderTotal.toFixed(2)}`;
-  const remainingBalance = Math.max(0, 617.94 - orderTotal);
+  const remainingBalance = Math.max(0, 112.87 - orderTotal);
   
   // Calculate meter progress based on used balance (including tax)
   // Meter should show the percentage of balance used, not remaining
-  const initialBalance = 617.94;
+  const initialBalance = 112.87;
   const usedBalance = Math.min(orderTotal, initialBalance);
   const meterProgress = Math.round((usedBalance / initialBalance) * 100);
   
@@ -1491,9 +1356,7 @@ function updateOrderDisplay() {
 function removeFromOrder(productName) {
   currentOrder = currentOrder.filter(item => item.name !== productName);
   updateOrderDisplay();
-  
-  // Save order to localStorage
-  saveOrderToStorage();
+  saveOrder();
 }
 
 // New functions for order quantity management
@@ -1510,7 +1373,7 @@ function increaseOrderQuantity(productName) {
     }, 0);
     
     const totalAfterTax = currentSubtotal; // No sales tax
-    const remainingBalance = 617.94;
+    const remainingBalance = 112.87;
     
     if (totalAfterTax > remainingBalance) {
       alert(`Cannot increase quantity. This would exceed your remaining balance of $${remainingBalance.toFixed(2)}.`);
@@ -1519,9 +1382,7 @@ function increaseOrderQuantity(productName) {
   
   item.quantity += 1;
   updateOrderDisplay();
-  
-  // Save order to localStorage
-  saveOrderToStorage();
+  saveOrder();
 }
 
 function decreaseOrderQuantity(productName) {
@@ -1530,9 +1391,7 @@ function decreaseOrderQuantity(productName) {
   
   item.quantity -= 1;
   updateOrderDisplay();
-  
-  // Save order to localStorage
-  saveOrderToStorage();
+  saveOrder();
 }
 
 function updateOrderQuantity(productName, newQuantity) {
@@ -1556,7 +1415,7 @@ function updateOrderQuantity(productName, newQuantity) {
     }, 0);
     
     const totalAfterTax = currentSubtotal; // No sales tax
-    const remainingBalance = 617.94;
+    const remainingBalance = 112.87;
     
     if (totalAfterTax > remainingBalance) {
       alert(`Cannot set quantity to ${quantity}. This would exceed your remaining balance of $${remainingBalance.toFixed(2)}.`);
@@ -1567,18 +1426,14 @@ function updateOrderQuantity(productName, newQuantity) {
   
   item.quantity = quantity;
   updateOrderDisplay();
-  
-  // Save order to localStorage
-  saveOrderToStorage();
+  saveOrder();
 }
 
 function clearOrder() {
   if (confirm('Are you sure you want to clear your entire order?')) {
     currentOrder = [];
     updateOrderDisplay();
-    
-    // Clear order from localStorage
-    clearOrderFromStorage();
+    clearSavedOrder();
   }
 }
 
@@ -1659,7 +1514,7 @@ function populateConfirmationDialog() {
   const subtotal = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const salesTax = subtotal * 0.00;
   const orderTotal = subtotal + salesTax;
-  const remainingBalance = 617.94 - orderTotal;
+  const remainingBalance = 112.87 - orderTotal;
   
   // Set current date
   const today = new Date();
@@ -1727,9 +1582,7 @@ function confirmAndSubmitOrder() {
   currentOrder = [];
   updateOrderDisplay();
   updateMobileOrderDialog();
-  
-  // Clear order from localStorage
-  clearOrderFromStorage();
+  clearSavedOrder();
   
   // Close mobile dialog if open
   const mobileDialog = document.getElementById('mobile-order-dialog');
@@ -2041,23 +1894,60 @@ function updateFullScreenButtonState() {
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', function() {
+  // Load saved order from localStorage
+  loadSavedOrder();
+  
   // Set initial full screen button state
   updateFullScreenButtonState();
   
-  // Don't automatically request full screen on page load
-  // Users should manually trigger full screen if they want it
+  // Show full screen prompt on page load
+  // Modern browsers require user interaction for full screen
+  setTimeout(() => {
+    if (isFullScreenSupported()) {
+      showFullScreenPrompt();
+    }
+  }, 1000);
   
   // Render all products initially
   renderProducts();
+  
+  // Add keyboard shortcuts for full screen
+  document.addEventListener('keydown', function(event) {
+    // F11 key to toggle full screen
+    if (event.key === 'F11') {
+      event.preventDefault();
+      toggleFullScreen();
+    }
+    // Escape key to exit full screen
+    if (event.key === 'Escape' && (document.fullscreenElement || 
+                                   document.webkitFullscreenElement || 
+                                   document.msFullscreenElement || 
+                                   document.mozFullScreenElement)) {
+      exitFullScreen();
+    }
+  });
+  
+  // Listen for full screen changes
+  document.addEventListener('fullscreenchange', handleFullScreenChange);
+  document.addEventListener('webkitfullscreenchange', handleFullScreenChange);
+  document.addEventListener('msfullscreenchange', handleFullScreenChange);
+  document.addEventListener('mozfullscreenchange', handleFullScreenChange);
+  
+  function handleFullScreenChange() {
+    // Update the full screen toggle button state
+    updateFullScreenButtonState();
+    
+    const isFullScreen = !!(document.fullscreenElement || 
+                           document.webkitFullscreenElement || 
+                           document.msFullscreenElement || 
+                           document.mozFullScreenElement);
+    
+    // You can add any additional logic here when full screen state changes
+    console.log('Full screen state changed:', isFullScreen);
+  }
 
-  // Check for saved order and load it if available
-  checkForSavedOrder();
-  
-  // Initialize order display (will show saved order if available)
+  // Initialize order display with empty state
   updateOrderDisplay();
-  
-  // Initialize clear saved order button visibility
-  updateClearSavedOrderButton();
   
   // Ensure "All" category is selected by default
   setTimeout(() => {
@@ -2167,3 +2057,72 @@ document.addEventListener('DOMContentLoaded', function() {
     renderProducts(currentSelectedLetter, currentSearchTerm);
   }
 });
+
+// Show full screen prompt modal
+function showFullScreenPrompt() {
+  // Check if we've already shown the prompt in this session
+  if (sessionStorage.getItem('fullscreenPromptShown')) {
+    return;
+  }
+  
+  // Create modal overlay
+  const overlay = document.createElement('div');
+  overlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `;
+  
+  // Create modal content
+  const modal = document.createElement('div');
+  modal.style.cssText = `
+    background-color: var(--forge-theme-surface);
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  `;
+  
+  modal.innerHTML = `
+    <h3 style="margin: 0 0 1rem 0; color: var(--forge-theme-on-surface);">Enter Full Screen Mode</h3>
+    <p style="margin: 0 0 1.5rem 0; color: var(--forge-theme-on-surface-variant);">
+      For the best experience, this application should be viewed in full screen mode.
+    </p>
+    <div style="display: flex; gap: 1rem; justify-content: center;">
+      <forge-button variant="outlined" onclick="dismissFullScreenPrompt()">
+        Skip
+      </forge-button>
+      <forge-button variant="raised" onclick="enterFullScreenFromPrompt()" theme="primary">
+        Enter Full Screen
+      </forge-button>
+    </div>
+  `;
+  
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+  
+  // Mark that we've shown the prompt
+  sessionStorage.setItem('fullscreenPromptShown', 'true');
+}
+
+// Dismiss the full screen prompt
+function dismissFullScreenPrompt() {
+  const overlay = document.querySelector('div[style*="z-index: 999999"]');
+  if (overlay) {
+    overlay.remove();
+  }
+}
+
+// Enter full screen from prompt (user interaction required)
+function enterFullScreenFromPrompt() {
+  dismissFullScreenPrompt();
+  toggleFullScreen();
+}

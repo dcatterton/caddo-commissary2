@@ -57,6 +57,12 @@ html {
   --forge-app-bar-foreground: #fff;
 }
 
+.app-bar-end {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .inmate-info {
   display: flex;
   align-items: center;
@@ -71,36 +77,6 @@ html {
 .inmate-info-name-id {
   display: flex;
   flex-direction: column;
-}
-
-/* Full screen button styling */
-#fullscreen-toggle {
-  margin-right: 1rem;
-  color: var(--forge-app-bar-foreground);
-}
-
-#fullscreen-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-#fullscreen-toggle:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* Clear saved order button styling */
-#clear-saved-order {
-  margin-right: 0.5rem;
-  color: var(--forge-app-bar-foreground);
-}
-
-#clear-saved-order:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-#clear-saved-order:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 
 .drawer-content {
@@ -118,7 +94,7 @@ html {
   display: flex;
   align-items: center;
   gap: 5px;
-  width: 85%;
+  width: 60%;
 }
 
 .header-card-right {
@@ -400,7 +376,7 @@ forge-chip {
   /* Adjust body container to use full width when drawer is hidden */
   .body-container {
     max-width: 100%;
-    padding: 1rem 1rem 10rem 1rem;
+    padding-right: 2rem;
   }
 }
 
@@ -1241,16 +1217,17 @@ forge-card {
   }
   
   .mobile-quantity-body .quantity-option {
-    padding: 0 1rem;
-    border-radius: 4px;
+    padding: 1.25rem;
+    min-height: 90px;
+    border-radius: 12px;
   }
   
   .mobile-quantity-body .quantity-number {
-    font-size: 16px;
+    font-size: 20px;
   }
   
   .mobile-quantity-body .quantity-price {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 
