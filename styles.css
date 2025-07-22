@@ -376,7 +376,6 @@ forge-chip {
   /* Adjust body container to use full width when drawer is hidden */
   .body-container {
     max-width: 100%;
-    padding-right: 2rem;
   }
 }
 
@@ -1297,10 +1296,14 @@ forge-card {
   gap: 1.5rem;
 }
 
+.mobile-order-dialog-back-button {
+  margin-right: 1rem;
+}
+
 @media (max-width: 768px) {
   .mobile-quantity-content {
-    width: 98vw;
-    max-height: 95vh;
+    width: 100vw;
+    max-height: 100vh;
   }
   
   .mobile-quantity-footer {

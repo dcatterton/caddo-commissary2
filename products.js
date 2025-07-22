@@ -1139,6 +1139,28 @@ function closeMobileOrderDialog() {
   }
 }
 
+function updateMobileOrderSheet() {
+  // Update the mobile order sheet (bottom sheet) content
+  const mobileOrderTotal = document.getElementById('mobile-order-total');
+  const mobileRemainingBalance = document.getElementById('mobile-remaining-balance');
+  
+  if (currentOrder.length === 0) {
+    if (mobileOrderTotal) mobileOrderTotal.textContent = '$0.00';
+    if (mobileRemainingBalance) mobileRemainingBalance.textContent = '$112.87';
+    return;
+  }
+  
+  // Calculate totals
+  const subtotal = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const salesTax = subtotal * 0.00;
+  const orderTotal = subtotal + salesTax;
+  const remainingBalance = Math.max(0, 112.87 - orderTotal);
+  
+  // Update the display
+  if (mobileOrderTotal) mobileOrderTotal.textContent = `$${orderTotal.toFixed(2)}`;
+  if (mobileRemainingBalance) mobileRemainingBalance.textContent = `$${remainingBalance.toFixed(2)}`;
+}
+
 function updateMobileOrderDialog() {
   const dialogContent = document.querySelector('.mobile-order-dialog-content');
   const dialogTotal = document.getElementById('mobile-dialog-total');
@@ -1336,10 +1358,17 @@ function updateOrderDisplay() {
     headerMeter.value = clampedValue;
   }
   
-  // Update mobile dialog if it's open
+  // Update mobile order dialog if it's open
   const mobileDialog = document.getElementById('mobile-order-dialog');
   if (mobileDialog && mobileDialog.open) {
     updateMobileOrderDialog();
+  }
+  
+  // Also update the mobile order sheet (bottom sheet) content
+  const mobileOrderSheet = document.getElementById('mobile-order-sheet');
+  if (mobileOrderSheet) {
+    // Update the mobile order sheet content
+    updateMobileOrderSheet();
   }
   
   // Re-render products to update badges after a small delay to ensure order updates are complete
@@ -1353,10 +1382,32 @@ function updateOrderDisplay() {
   }
 }
 
+// Make sure removeFromOrder is globally accessible
+window.removeFromOrder = function(productName) {
+  console.log('removeFromOrder called with:', productName);
+  console.log('Current order before removal:', currentOrder);
+  
+  try {
+    const initialLength = currentOrder.length;
+    currentOrder = currentOrder.filter(item => item.name !== productName);
+    
+    console.log('Current order after removal:', currentOrder);
+    console.log('Items removed:', initialLength - currentOrder.length);
+    
+    updateOrderDisplay();
+    saveOrder();
+    
+    // Show a brief toast notification
+    showRemoveToast(productName);
+  } catch (error) {
+    console.error('Error removing item from order:', error);
+    alert('Error removing item from order. Please try again.');
+  }
+};
+
+// Also define it as a regular function for backward compatibility
 function removeFromOrder(productName) {
-  currentOrder = currentOrder.filter(item => item.name !== productName);
-  updateOrderDisplay();
-  saveOrder();
+  window.removeFromOrder(productName);
 }
 
 // New functions for order quantity management
@@ -1435,6 +1486,39 @@ function clearOrder() {
     updateOrderDisplay();
     clearSavedOrder();
   }
+}
+
+// Custom toast notification for removing items from order
+function showRemoveToast(productName) {
+  // Create custom toast element
+  const toast = document.createElement('div');
+  toast.className = 'custom-toast';
+  
+  // Set toast content
+  toast.innerHTML = `
+    <div class="custom-toast-content">
+      <forge-icon name="remove_circle" external></forge-icon>
+      <span class="custom-toast-message">${productName} removed from order</span>
+    </div>
+  `;
+  
+  // Add to page
+  document.body.appendChild(toast);
+  
+  // Show the toast with animation
+  setTimeout(() => {
+    toast.classList.add('show');
+  }, 10);
+  
+  // Remove toast after duration
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => {
+      if (document.body.contains(toast)) {
+        document.body.removeChild(toast);
+      }
+    }, 300); // Wait for fade out animation
+  }, 2000);
 }
 
 // Custom toast notification for adding items to order

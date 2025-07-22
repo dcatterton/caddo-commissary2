@@ -60,7 +60,7 @@
 
     </div>
     <div slot="body-header">
-      <forge-card style="--forge-card-padding:0.5rem 1.5rem 0.5rem 0rem; --forge-card-shape: 0;">
+      <forge-card style="--forge-card-padding:0.5rem 0.5rem 0.5rem 0rem; --forge-card-shape: 0;">
         <div class="header-card">
           <div class="header-card-left">
             <forge-icon-button aria-label="Go back">
@@ -166,6 +166,9 @@
   <forge-dialog id="mobile-order-dialog" label="Order Details" description="Review and submit your commissary order" fullscreen>
     <forge-scaffold>
       <forge-toolbar slot="header" auto-height style="--forge-toolbar-padding-block: 1rem;">
+        <forge-icon-button slot="start" onclick="closeMobileOrderDialog()" class="mobile-order-dialog-back-button">
+          <forge-icon name="arrow_back" external></forge-icon>
+        </forge-icon-button>
         <h2 slot="start" class="forge-typography--heading3">Order Details</h2>
         <forge-icon-button slot="end" aria-label="Close dialog" onclick="closeMobileOrderDialog()">
           <forge-icon name="close" external></forge-icon>
