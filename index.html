@@ -22,13 +22,20 @@
     <div slot="header">
       <forge-app-bar title-text="Caddo Parish, LA" class="app-bar">
         <forge-icon slot="logo" name="tyler_talking_t_logo" external></forge-icon>
-        <a href="https://caddo-commissary1.vercel.app" slot="end" style="text-decoration: none; color: inherit;">
-        <div class="inmate-info"><forge-icon name="person" external></forge-icon>
-          <div class="inmate-info-name-id">
-          <p class="forge-typography--body1">Mia Tamya Walker</p>
-          <p class="forge-typography--label1" style="opacity: 0.5;">ID: 144109</p>
-        </div>
-        </div>
+        <!-- <forge-icon-button slot="end" id="clear-saved-order" aria-label="Clear saved order" onclick="clearSavedOrder()" title="Clear saved order" style="display: none;">
+          <forge-icon name="delete_sweep" external></forge-icon>
+        </forge-icon-button> -->
+        <forge-icon-button slot="end" id="fullscreen-toggle" aria-label="Toggle full screen" onclick="toggleFullScreen()" title="Enter full screen">
+          <forge-icon name="fullscreen" external></forge-icon>
+        </forge-icon-button>
+        <a href="https://caddo-commissary2.vercel.app" slot="end" style="text-decoration: none; color: inherit;">
+          <div class="inmate-info">
+            <forge-icon name="person" external></forge-icon>
+            <div class="inmate-info-name-id">
+            <p class="forge-typography--body1">Leanthony Moore</p>
+            <p class="forge-typography--label1" style="opacity: 0.5;">ID: 145458</p>
+          </div>
+          </div>
         </a>
       </forge-app-bar>
 
@@ -65,10 +72,10 @@
           </div>
           <div class="header-card-right">
             <div class="balance-section">
-              <p class="forge-typography--label2">Remaining balance: <span class="balance-amount">$112.87</span></p>
+              <p class="forge-typography--label2">Remaining balance: <span class="balance-amount">$617.94</span></p>
               <forge-meter id="meter" max="100" density="small" theme="success"></forge-meter>
             </div>
-<!--             <a href="order-history.html">
+            <!-- <a href="order-history.html">
               <forge-button variant="outlined" theme="success">
                 Order history
               </forge-button>
@@ -160,7 +167,7 @@
   <!-- Mobile Order Dialog -->
   <forge-dialog id="mobile-order-dialog" label="Order Details" description="Review and submit your commissary order" fullscreen>
     <forge-scaffold>
-      <forge-toolbar slot="header" auto-height style="--forge-toolbar-padding-block: 1rem;">
+      <forge-toolbar slot="header" auto-height style="--forge-toolbar-padding-block: 1rem; --forge-toolbar-padding-inline: 2rem;">
         <h2 slot="start" class="forge-typography--heading3">Order Details</h2>
         <forge-icon-button slot="end" aria-label="Close dialog" onclick="closeMobileOrderDialog()">
           <forge-icon name="close" external></forge-icon>
@@ -169,7 +176,7 @@
       <div slot="body" class="mobile-order-dialog-content">
         <!-- Order items will be dynamically loaded here -->
       </div>
-      <forge-toolbar slot="footer" inverted auto-height style="--forge-toolbar-padding-block: 2rem;">
+      <forge-toolbar slot="footer" inverted auto-height style="--forge-toolbar-padding-block: 2rem; --forge-toolbar-padding-inline: 2rem;">
         <div slot="center" class="mobile-order-summary">
           <div class="mobile-cost-breakdown">
             <div class="cost-row">
@@ -197,7 +204,7 @@
   <!-- Quantity Selection Dialog -->
   <forge-dialog id="quantity-selection-dialog" label="Add item to order" description="Select quantity for this item">
     <forge-scaffold>
-      <forge-toolbar slot="header">
+      <forge-toolbar slot="header" auto-height style="--forge-toolbar-padding-block: 2rem 1rem;">
         <h2 slot="start" class="forge-typography--heading3" id="quantity-dialog-title">Add item to order</h2>
         <forge-icon-button slot="end" aria-label="Close dialog" onclick="closeQuantityDialog()">
           <forge-icon name="close" external></forge-icon>
@@ -224,10 +231,10 @@
         </div>
       </div>
       
-      <forge-toolbar slot="footer" inverted>
+      <forge-toolbar slot="footer" inverted auto-height style="--forge-toolbar-padding-block: 1rem 2rem; --forge-toolbar-padding-inline: 2rem;">
         <div slot="start">
           <div class="quantity-dialog-balance-section">
-            <p class="forge-typography--body1">Remaining balance: <span class="balance-amount forge-typography--heading2" id="quantity-dialog-remaining-balance">$112.87</span></p>
+            <p class="forge-typography--body1">Remaining balance: <span class="balance-amount forge-typography--heading2" id="quantity-dialog-remaining-balance">$617.94</span></p>
             <forge-meter id="quantity-dialog-meter" max="100" density="small" theme="success"></forge-meter>
           </div>
         </div>
@@ -268,11 +275,11 @@
           <div class="customer-info-grid">
             <div class="info-row">
               <span class="info-label">Inmate ID:</span>
-              <span class="info-value">144109</span>
+              <span class="info-value">145458</span>
             </div>
             <div class="info-row">
               <span class="info-label">Name:</span>
-              <span class="info-value">Mia Tamya Waklker</span>
+              <span class="info-value">Leanthony Moore</span>
             </div>
             <div class="info-row">
               <span class="info-label">Facility:</span>
@@ -284,7 +291,7 @@
             </div>
             <div class="info-row">
               <span class="info-label">Remaining Balance:</span>
-              <span class="info-value" id="remaining-balance-confirmation">$112.87</span>
+              <span class="info-value" id="remaining-balance-confirmation">$617.94</span>
             </div>
           </div>
         </div>
