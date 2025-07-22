@@ -1791,7 +1791,7 @@ function closeMobileQuantityDialog() {
 function handleDrawerVisibility() {
   const drawer = document.querySelector('forge-drawer');
   const mobileOrderDialog = document.getElementById('mobile-order-sheet');
-  const isSmallScreen = window.innerWidth < 1080;
+  const isSmallScreen = window.innerWidth < 800;
   
   if (isSmallScreen) {
     // Hide drawer on small screens
